@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gencode.generate.persistence.mapper.TestMapper">
+  <resultMap id="BaseResultMap" type="com.gencode.generate.persistence.model.Test">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, password, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from test
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gencode.generate.persistence.model.Test">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into test (name, password, time
+      )
+    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gencode.generate.persistence.model.Test">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gencode.generate.persistence.model.Test">
+    update test
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gencode.generate.persistence.model.Test">
+    update test
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByCondition" parameterType="com.gencode.generate.persistence.model.Test" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from
+    test
+    <where>
+      <if test="id != null">
+        and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="name != null">
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null">
+        and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="time != null">
+        and time = #{time,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, password, time
+    from test
+  </select>
+  <select id="selectByPage" parameterType="com.codegen.vo.Page" resultMap="BaseResultMap">
+    select id, name, password, time
+    from test
+    <if test="obj != null">
+      <where>
+        <if test="obj.name != null">
+          and name = #{obj.name,jdbcType=VARCHAR}
+        </if>
+        <if test="obj.password != null">
+          and password = #{obj.password,jdbcType=VARCHAR}
+        </if>
+        <if test="obj.time != null">
+          and time = #{obj.time,jdbcType=VARCHAR}
+        </if>
+      </where>
+    </if>
+    limit #{offset,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+  <select id="count" parameterType="com.gencode.generate.persistence.model.Test" resultType="java.lang.Integer">
+    select count(1) from test
+    <where>
+      <if test="name != null">
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null">
+        and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="time != null">
+        and time = #{time,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByCondition" parameterType="com.gencode.generate.persistence.model.Test">
+    delete from test
+    <where>
+      <if test="id != null">
+        and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="name != null">
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null">
+        and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="time != null">
+        and time = #{time,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </delete>
+</mapper>
