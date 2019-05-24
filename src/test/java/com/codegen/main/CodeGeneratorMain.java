@@ -13,7 +13,7 @@ public class CodeGeneratorMain {
      * table name support singer string table name with or without underline such "table","my_table" etc.<br>
      * other style not tested
      */
-    private static final String TABLE = "sites";
+    private static final String TABLE = "test";
 
     public static void main(String[] args) {
         CodeGeneratorManager cgm = new CodeGeneratorManager();

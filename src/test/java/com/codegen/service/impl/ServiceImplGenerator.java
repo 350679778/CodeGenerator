@@ -20,7 +20,7 @@ import freemarker.template.Configuration;
 /**
  * Service层 代码生成器 Created by zhh on 2017/09/20.
  */
-public class ServiceGenerator extends CodeGeneratorManager implements CodeGenerator {
+public class ServiceImplGenerator extends CodeGeneratorManager implements CodeGenerator {
 
     @Override
     public void genCode(String tableName) {
@@ -37,19 +37,20 @@ public class ServiceGenerator extends CodeGeneratorManager implements CodeGenera
                                                                                       modelNameUpperCamel),
                                                                 modelNameUpperCamel);
             data.put("serviceMethodsList", serviceMethodsList);
-
-            // 创建 Service 接口
-            File serviceFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_SERVICE + customMapping
-                                        + modelNameUpperCamel + "Service.java");
+            
+            System.out.println(PACKAGE_PATH_SERVICE);
+            // 创建 Service 实现类
+            File serviceFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_SERVICE + "impl/" + customMapping
+                                        + modelNameUpperCamel + "ServiceImpl.java");
             // 查看父级目录是否存在, 不存在则创建
             if (!serviceFile.getParentFile().exists()) {
                 serviceFile.getParentFile().mkdirs();
             }
-            cfg.getTemplate("service.ftl").process(data, new FileWriter(serviceFile));
-            logger.info(modelNameUpperCamel + "Service.java 生成成功!");
+            cfg.getTemplate("serviceImpl.ftl").process(data, new FileWriter(serviceFile));
+            logger.info(modelNameUpperCamel + "ServiceImpl.java 生成成功!");
 
         } catch (Exception e) {
-            throw new RuntimeException("Service 生成失败!", e);
+            throw new RuntimeException("ServiceImpl 生成失败!", e);
         }
     }
 

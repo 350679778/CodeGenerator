@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import com.codegen.service.impl.ControllerGenerator;
 import com.codegen.service.impl.ModelAndMapperGenerator;
+import com.codegen.service.impl.ServiceImplGenerator;
 import com.codegen.service.impl.ServiceGenerator;
 
 import freemarker.template.Configuration;
@@ -120,6 +121,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
     private void genCodeByTableName(String tableName) {
         new ModelAndMapperGenerator().genCode(tableName);
         new ServiceGenerator().genCode(tableName);
+        new ServiceImplGenerator().genCode(tableName);
         new ControllerGenerator().genCode(tableName);
     }
 
@@ -170,6 +172,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
         MODEL_PACKAGE = prop.getProperty("model.package");
         MAPPER_PACKAGE = prop.getProperty("mapper.package");
         SERVICE_PACKAGE = prop.getProperty("service.package");
+        SERVICE_IMPL_PACKAGE = prop.getProperty("service.impl.package");
         CONTROLLER_PACKAGE = prop.getProperty("controller.package");
 
         PACKAGE_PATH_SERVICE = packageConvertPath(SERVICE_PACKAGE);

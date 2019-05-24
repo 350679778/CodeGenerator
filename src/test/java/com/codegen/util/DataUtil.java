@@ -43,6 +43,7 @@ public class DataUtil extends CodeGeneratorConfig{
         data.put("modelNameUpperCamel", modelNameUpperCamel);
         data.put("modelNameLowerCamel", CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, modelNameUpperCamel));
         data.put("servicePackage", SERVICE_PACKAGE);
+        data.put("serviceImplPackage", SERVICE_IMPL_PACKAGE);
         data.put("modelPackage", MODEL_PACKAGE);
         data.put("controllerPackage", CONTROLLER_PACKAGE);
         data.put("mapperPackage", MAPPER_PACKAGE);

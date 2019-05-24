@@ -26,6 +26,8 @@ public class CodeGeneratorConfig {
 	protected static String MAPPER_PACKAGE;
 	// 项目 Service 所在包
 	protected static String SERVICE_PACKAGE;
+	// 项目 ServiceImpl 所在包
+	protected static String SERVICE_IMPL_PACKAGE;
 	// 项目 Controller 所在包
 	protected static String CONTROLLER_PACKAGE;
 	
